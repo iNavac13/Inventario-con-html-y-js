@@ -112,7 +112,12 @@ btnEliminar.addEventListener('click', () => {
 const btnBuscar = document.getElementById('btnBuscar')
 btnBuscar.addEventListener('click', () => {
     const codigo = document.getElementById('txtCodigo').value
-    miInv.buscar(codigo)
+    if(miInv.buscar(codigo) == false){
+        alert(`El producto con código ${codigo} no fue encontrado`)
+    } else {
+        alert(`El producto con código ${codigo} fue encontrado`)
+
+    }
 
 })
 
