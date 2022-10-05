@@ -109,6 +109,14 @@ btnEliminar.addEventListener('click', () => {
 
 })
 
+const btnBuscar = document.getElementById('btnBuscar')
+btnBuscar.addEventListener('click', () => {
+    const codigo = document.getElementById('txtCodigo').value
+    miInv.buscar(codigo)
+
+})
+
+
 const btnListar = document.getElementById('btnListar')
 btnListar.addEventListener('click', () => {
     alert(miInv.listar())
