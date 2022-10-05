@@ -36,16 +36,36 @@ class Inventario{
     };
 
     buscar(codigo){
-        let value = 0;
-        for (let i = 0; i < this.listaProductos.length; i++) {
-            if (this.listaProductos[i].codigo == codigo) {
-                value = 1;
-                return this.listaProductos[i];
+        let producto = false;
+        let inicio = 0;
+        let fin = this.listaProductos.length - 1;
+        let mitad = Math.floor((inicio + fin) / 2);
+        while (inicio <= fin) {
+            if (Number(this.listaProductos[mitad].codigo) === Number(codigo)) {
+                producto = this.listaProductos[mitad];
+                break;
+            } else if (Number(this.listaProductos[mitad].codigo) < Number(codigo)) {
+                inicio = mitad + 1;
             } else {
-                return value;
+                fin = mitad - 1;
             }
+            mitad = Math.floor((inicio + fin) / 2);
         }
-    };
+        return producto;
+    }
+    
+
+    //buscar(codigo){
+      //  let value = 0;
+        //for (let i = 0; i < this.listaProductos.length; i++) {
+          //  if (this.listaProductos[i].codigo == codigo) {
+            //    value = 1;
+              //  return this.listaProductos[i];
+           // } else {
+            //    return value;
+           // }
+     //   }
+  //  };
 
     listar(){
         let lista = '';
