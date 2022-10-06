@@ -23,7 +23,7 @@ class Inventario{
     }
 
     eliminar(codigo){
-        
+    
             for (let i = 0; i <= this.listaProductos.length-1; i++) {
                 if (this.listaProductos[i].codigo == codigo){
                         for (let x = i; x <= this.listaProductos.length-1; x++) {
@@ -32,7 +32,7 @@ class Inventario{
                 }
             }
             this.listaProductos.pop();
-            alert(`El producto con codigo ${codigo} fue eliminado`)
+            return true;  
     };
 
     buscar(codigo){
@@ -105,7 +105,13 @@ btnAgregar.addEventListener('click', () => {
 const btnEliminar = document.getElementById('btnEliminar')
 btnEliminar.addEventListener('click', () => {
     const codigo = document.getElementById('txtCodigo').value
-    miInv.eliminar(codigo)
+    if (miInv.buscar(codigo) == false) {
+        document.getElementById("listado").innerHTML=`El producto con codigo: ${codigo} NO pudo ser eliminado porque no existe`
+    } else{
+        miInv.eliminar(codigo)
+        document.getElementById("listado").innerHTML=`El prodcuto con codigo: ${codigo} fue eliminado`
+
+    }
 
 })
 
