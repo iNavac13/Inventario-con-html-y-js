@@ -71,21 +71,21 @@ class Inventario{
         let lista = '';
         let contador = 0;
         this.listaProductos.forEach(producto => {
-            lista += this.listaProductos[contador].info()+"\n";
+            lista += this.listaProductos[contador].info()+"<br>";
             contador++
         });
         return `                LISTA
-        \n${lista}`;
+        <br>${lista}`;
     };
     
 
     listarInverso(){
         let lista = '';
         for(let i=this.listaProductos.length-1;i>=0;i--){
-            lista += this.listaProductos[i].info()+"\n";
+            lista += this.listaProductos[i].info()+"<br>";
         }
         return `                LISTA INVERSA
-        \n${lista}`;
+        <br>${lista}`;
     };
 };
 
@@ -99,7 +99,7 @@ btnAgregar.addEventListener('click', () => {
     const costo = document.getElementById('txtCosto').value
     const producto = new Producto(codigo, nombre, cantidad, costo)
     miInv.agregarProducto(producto)
-    alert('El producto fue agregado')
+    document.getElementById("listado").innerHTML=`El producto ${nombre} con codigo ${codigo} fue agregado`
 });
 
 const btnEliminar = document.getElementById('btnEliminar')
@@ -112,22 +112,22 @@ btnEliminar.addEventListener('click', () => {
 const btnBuscar = document.getElementById('btnBuscar')
 btnBuscar.addEventListener('click', () => {
     const codigo = document.getElementById('txtCodigo').value
+    let producto = miInv.buscar(codigo);
     if(miInv.buscar(codigo) == false){
-        alert(`El producto con código ${codigo} no fue encontrado`)
+        document.getElementById("listado").innerHTML=`<p>El producto con código ${codigo} NO fue encontrado</p>`
     } else {
-        alert(`El producto con código ${codigo} fue encontrado`)
-
+        document.getElementById("listado").innerHTML=`<p>El producto con código ${codigo} fue encontrado</p><br>
+        ${producto.info()}`
     }
-
 })
 
 
 const btnListar = document.getElementById('btnListar')
 btnListar.addEventListener('click', () => {
-    alert(miInv.listar())
+    document.getElementById("listado").innerHTML=`<p>${miInv.listar()}</p>`
 });
 
 const btnListarInverso = document.getElementById('btnListarInverso')
 btnListarInverso.addEventListener('click', () => {
-    alert(miInv.listarInverso())
+    document.getElementById("listado").innerHTML=`<p>${miInv.listarInverso()}</p>`
 });
